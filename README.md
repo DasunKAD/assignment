@@ -1,6 +1,5 @@
 # assignment
 
-Thechnologis 
 
 H2 in memory Database
 
