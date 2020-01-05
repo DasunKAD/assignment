@@ -27,10 +27,10 @@ public class EmployeeeServiceTest {
 
     @Test
     public void getAllEmployeesTest(){
-        Mockito.when(employeeDao.selectAllEmpolyees()).thenReturn(Stream.of(new Employees(1,"dasun","madhuwantha",
-                new Departments(1,"IT")),new Employees(2,"sahan","harithapriya",
-                new Departments(1,"IT"))).collect(Collectors.toList()));
-        Assert.assertEquals(2,employeeService.selectAllEmpolyees().size() );
+        Mockito.when(employeeDao.findAll()).thenReturn(Stream.of(new Employees(3,"imhi","koshala",
+                new Departments(1,"department1")),new Employees(6,"dasu","Madhuwantha",
+                new Departments(2,"department2"))).collect(Collectors.toList()));
+        Assert.assertEquals(2,employeeService.getAllEmployees().size() );
 
     }
 }

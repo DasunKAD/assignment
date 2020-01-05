@@ -1,15 +1,33 @@
 package com.noetic.assignment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @Entity
 @Table(name="departments")
-public class Departments  {
+public class Departments implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int deptId;
+    @NotBlank
+    @Column(name="deptName")
     private String deptName;
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "departments")
+    @OneToOne(mappedBy = "departments",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Employees employees;
+
+    public Departments() {
+
+    }
+    public Departments(int deptId ) {
+        this.deptId=deptId;
+    }
+
+    public Departments( String deptName) {
+        this.deptName = deptName;
+    }
 
     public Departments(int deptId, String deptName) {
         this.deptId = deptId;
@@ -45,6 +63,7 @@ public class Departments  {
         return "Departments{" +
                 "deptId=" + deptId +
                 ", deptName='" + deptName + '\'' +
+                ", employees=" + employees +
                 '}';
     }
 }
